@@ -369,3 +369,15 @@ footer a:hover {
 
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
 @media only screen and (max-width: 479px) {}
+
+/* Customizations by Jamie
+================================================== */
+
+span.hover_target {
+    display: inline;
+    border: 1px solid #cbcbcb;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin: 0 10px 0 0;
+}
+
