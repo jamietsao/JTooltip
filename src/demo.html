@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="description" content="JTooltip demo" />
+        <meta name="author" content="Jamie Tsao - code@jamietsao.com" />    
+        <link rel="stylesheet" href="css/jtooltip.css" />
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script src="js/jtooltip.js"></script>
+        
+        <style type="text/css">
+            body {
+                font-size: 1em;
+                font-family: 'Helvetica Neue', Helvetica, Arial, serif;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <h1>Demo for JTooltip</h1>
+        <div class="jtooltip">Hover over me</div>
+    </body>
+
+    <script type="text/javascript">
+    
+        $(document).ready(function() {
+
+            JTooltip.create({ target : ".jtooltip", content : "Hello!"});
+            
+        });
+    
+    </script>
+    
+</html>

@@ -1,0 +1,4 @@
+JTooltip
+========
+
+jQuery Tooltip library
