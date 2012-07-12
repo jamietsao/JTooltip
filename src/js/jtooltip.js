@@ -52,7 +52,7 @@
                     offset      : undefined,
                     showDelay   : 200,
                     hideDelay   : 75,
-                    animateShow : true,
+                    animateShow : false,
                     animateDur  : 200,
                     stem        : true,
                     containment : "viewport",
@@ -311,27 +311,27 @@
                             var positions = position();
                             
                             // show
-                            if (props.animateShow) {
-                                animate(positions.position, container);
-                            } else {
-                                container.show();
-                            }
+                            animate(container, props.animateShow, positions.position);
                         }
                         
                     }, props.showDelay);
                 };
                 
-                var animate = function(position, container) {
-                    var animValues = getAnimValues(position);
-                    container.css(animValues.property, animValues.start);
+                var animate = function(container, animate, position) {
                     container.css("opacity", 0);
-                    container.show();
                     var animProps = { opacity : 1 };
-                    animProps[animValues.property] = animValues.end;
+                    if (animate) {
+                        var animValues = getAnimValues(position);
+                        container.css(animValues.property, animValues.start);
+                        animProps[animValues.property] = animValues.end;
+                    }
+                    container.show();
                     container.animate(animProps, {
                         duration: props.animateDur,
                         complete: function() {
-                            container.css(animValues.property, "");
+                            if (animate) {
+                                container.css(animValues.property, "");
+                            }
                             container.css("opacity", "");
                         }
                     });
