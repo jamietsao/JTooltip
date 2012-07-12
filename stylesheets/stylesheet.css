@@ -57,10 +57,10 @@ body {
 }
 
 a {
-  color: #d5000d;
+  color: #598ede;
 }
 a:hover {
-  color: #c5000c;
+  color: #3779d9;
 }
 
 header {
@@ -252,7 +252,7 @@ h2 {
 } 
 
 h3 {
-  color: #d5000d;
+  color: #3779d9;
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 8px;
@@ -370,14 +370,20 @@ footer a:hover {
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
 @media only screen and (max-width: 479px) {}
 
-/* Customizations by Jamie
+/* New classes for JTooltip by Jamie
 ================================================== */
+
+div.example_row {
+    display: block;
+    margin: 75px auto;
+    text-align: center;
+}
 
 span.hover_target {
     display: inline;
     border: 1px solid #cbcbcb;
     padding: 5px 10px;
     cursor: pointer;
-    margin: 0 10px 0 0;
+    margin: 0 40px;
 }
 
