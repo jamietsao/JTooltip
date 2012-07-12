@@ -13,7 +13,7 @@
     <![endif]-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="src/js/jtooltip.js"></script>
-    <title>JTooltip by jamietsao</title>
+    <title>JTooltip by Jamie Tsao</title>
   </head>
 
   <body>
@@ -22,7 +22,7 @@
 
         <header>
           <h1>JTooltip</h1>
-          <h2>jQuery Tooltip library</h2>
+          <h2>Not just another Tooltip library</h2>
           <h5>by <a href="https://github.com/jamietsao">Jamie Tsao</a></h5>
         </header>
 
@@ -45,18 +45,19 @@
                 <span class="hover_target" title="Left" id="1_left">Left</span>
             </div>
 
-            <h3>Instructions</h3>
-            <p></p>    
+            <h3>Simple to Use</h3>
+            <p>You create tooltip(s) for any 'target' by calling <span class="code">JTooltip.create</span> with a CSS selector, jQuery element, or DOM element.</p>
+            <div class="highlight">
+<pre>
+<span class="nx">JTooltip</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span> <span class="nx">target</span> <span class="o">:</span> <span class="s2">"#username"</span><span class="p">,</span> <span class="nx">content</span><span class="o">:</span> <span class="s2">"Marshall Mathers"</span> <span class="p">});</span>
+</pre>            
+            </div>            
+            <div class="example_row">
+                <span id="username">slimshady</span>
+            </div>
             
-            <h3>Examples</h3>
-
-            <pre>
-<code>
-$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code>
-            </pre>
+            <h3>More Examples</h3>
+            
             
             <h3>Options</h3>
             
@@ -66,11 +67,11 @@ $ git checkout gh-pages
             
             <h3>Support Browsers</h3>
             
+            <h3>About</h3>
+            
         </section>
 
         <footer>
-          JTooltip is maintained by <a href="https://github.com/jamietsao">jamietsao</a><br>
-          Tactile theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.
         </footer>
 
         <script tyoe="text/javascript">
@@ -80,7 +81,8 @@ $ git checkout gh-pages
                 JTooltip.create({ target : "#1_right", position: "right"});
                 JTooltip.create({ target : "#1_bottom", position: "bottom"});
                 JTooltip.create({ target : "#1_left", position: "left"});
-                
+                // examples for 'Simple to Use'
+                JTooltip.create({ target : "#username", content : "Marshall Mathers" });
             });
         </script>
         
