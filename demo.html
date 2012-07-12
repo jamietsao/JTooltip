@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+    <head>
+        <title>JTooltip Demo</title>
+        <meta charset='utf-8'>
+        <meta http-equiv="X-UA-Compatible" content="chrome=1">
+        <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="src/css/jtooltip.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script src="src/js/jtooltip.js"></script>
+        <style type="text/css">
+            body {
+                width: 900px;
+                margin: 0 auto;
+            }
+            
+            h1 {
+                font-family: 'Helvetica Neue', Helvetica, Arial, serif; 
+                font-weight: 900;
+                letter-spacing: -1px;
+                font-size: 48px;
+                color: #303030;
+                line-height: 1.2;            
+            }
+            
+            .target {
+                width: 100px;
+                padding: 5px 10px;
+                margin: 20px 0px;
+                border: 1px solid #aaa;
+                color: #598ede;
+                text-align: center;
+                cursor: pointer;
+            }
+        
+        </style>
+    </head>
+    <body>
+        <h1>JTooltip Demo</h1>
+        <div class="target" id="1">Right Side</div>        
+        <div class="target" id="2">Animate Right</div>        
+        <script type="text/javascript">
+            $(document).ready(function() {
+                JTooltip.create({ target : "#1", content : "This is awesome!", position : "right" });                
+                JTooltip.create({ target : "#2", content : "This is even more awesome!", animateShow : true, position : "right" });                
+            });
+        </script>
+    </body>
+
+</html>
