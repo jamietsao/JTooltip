@@ -179,7 +179,10 @@ code {
 }
 
 pre {
-  padding: 20px;
+ border-radius: 2px;
+ -moz-border-radius: 2px;
+ -webkit-border-radius: 2px;
+ padding: 20px;
   background: #303030;
   color: #f2f2f2;
   text-shadow: none;
@@ -376,19 +379,25 @@ footer a:hover {
 div.example_row {
     display: block;
     margin: 40px auto;
-    text-align: center;
 }
 
-span.hover_target {
-    display: inline;
+span.tooltip_target {
+    display: inline-block;
+    background-color: #fff;
     border: 1px solid #cbcbcb;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
     padding: 5px 10px;
+    margin: 0 20px 0 0;
+    min-width: 65px;
     cursor: pointer;
-    margin: 0 40px;
-    background-color: #aaa;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
 }
 
-span#username {
+span.username {
     height: 40px;
     display: inline-block;
     border: 1px solid #cbcbcb;
@@ -397,9 +406,9 @@ span#username {
     background: #fff url('../images/eminem.gif') no-repeat 0 0;
     font-size: 14px;
     font-weight: bold;
-    border-radius: 3px;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
     text-align: center;
     color: #222;
     line-height: 40px;

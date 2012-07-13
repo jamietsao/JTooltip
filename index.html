@@ -36,13 +36,11 @@
 
         <section id="main_content">
             <h3>Introduction</h3>
-            <p>JTooltip is a compact, easy to use jQuery library for creating tooltips such as:</p>
+            <p>JTooltip is a lightweight, easy to use jQuery library for creating tooltips:</p>
 
             <div class="example_row">
-                <span class="hover_target" title="Top" id="1_top">Top</span>
-                <span class="hover_target" title="Right" id="1_right">Right</span>
-                <span class="hover_target" title="Bottom" id="1_bottom">Bottom</span>
-                <span class="hover_target" title="Left" id="1_left">Left</span>
+                <span class="tooltip_target" id="1">Hover over me!</span>
+                <span class="tooltip_target" id="2">Don't forget me!</span>
             </div>
 
             <h3>Simple to Use</h3>
@@ -53,7 +51,25 @@
 </pre>            
             </div>            
             <div class="example_row">
-                <span id="username">slimshady</span>
+                <span class="username" id="3">slimshady</span>
+            </div>
+            
+            <p>Text from the <span class="code">title</span> attribute can be used as content by not including the <span class="code">content</span> option (use the <span class="code">contentAttr</span> option to specify an attribute other than <span class="code">title</span>).</p>
+            <div class="highlight">
+<pre><span class="o">&lt;</span><span class="nx">span</span> <span class="kr">class</span><span class="o">=</span><span class="s2">"jtooltip-me"</span> <span class="nx">title</span><span class="o">=</span><span class="s2">"Text from the 'title' attribute"</span><span class="o">&gt;</span><span class="nx">Foo</span><span class="o">&lt;</span><span class="nx">/span&gt;</span>
+<span class="o">&lt;</span><span class="nx">span</span> <span class="kr">class</span><span class="o">=</span><span class="s2">"jtooltip-me"</span> <span class="nx">title</span><span class="o">=</span><span class="s2">"Allows for content re-use"</span><span class="o">&gt;</span><span class="nx">Bar</span><span class="o">&lt;</span><span class="nx">/span&gt;</span>
+
+<span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"text/javascript"</span><span class="o">&gt;</span>
+    <span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// multiple tooltips can be created by using CSS selectors</span>
+        <span class="nx">JTooltip</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span> <span class="nx">target</span> <span class="o">:</span> <span class="s2">".jtooltip-me"</span> <span class="p">});</span>
+    <span class="p">});</span>
+<span class="o">&lt;</span><span class="nx">/script&gt;</span>
+</pre>
+            </div>            
+            <div class="example_row">
+                <span class="tooltip_target" id="4" title="Text from the 'title' attribute">Foo</span>
+                <span class="tooltip_target" id="5" title="Allows for content re-use">Bar</span>
             </div>
             
             <h3>More Examples</h3>
@@ -77,12 +93,12 @@
         <script tyoe="text/javascript">
             $(document).ready(function() {
                 // Examples from section 1
-                JTooltip.create({ target : "#1_top", position: "top"});
-                JTooltip.create({ target : "#1_right", position: "right"});
-                JTooltip.create({ target : "#1_bottom", position: "bottom"});
-                JTooltip.create({ target : "#1_left", position: "left"});
+                JTooltip.create({ target : "#1", content : "Hello", position: "top"});
+                JTooltip.create({ target : "#2", content : "World!", position: "top" });
                 // examples for 'Simple to Use'
-                JTooltip.create({ target : "#username", content : "Marshall Mathers" });
+                JTooltip.create({ target : "#3", content : "Marshall Mathers" });
+                JTooltip.create({ target : "#4" });
+                JTooltip.create({ target : "#5" });
             });
         </script>
         
