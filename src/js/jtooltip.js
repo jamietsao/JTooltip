@@ -48,9 +48,10 @@
                     
                     target      : undefined, 
                     content     : undefined,
+                    contentAttr : "title",
                     position    : "top",
                     offset      : undefined,
-                    showDelay   : 200,
+                    showDelay   : 100,
                     hideDelay   : 75,
                     animateShow : false,
                     animateDur  : 200,
@@ -109,7 +110,7 @@
                     // get content
                     if (!props.content) {
                         // use title attribute
-                        bubbleContent = target.attr("title");
+                        bubbleContent = target.attr(props.contentAttr);
                     } else if ($.type(props.content) == "function") {
                         // execute function for content
                         bubbleContent = props.content();
