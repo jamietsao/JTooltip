@@ -101,6 +101,7 @@
                 var attached = false;           // indicates if tooltip is attached to DOM
                 var hovered = false;            // indicates if tooltip is currently being hovered
                 var basic = true;               // indicates if bubble has basic content (e.g. text only vs. more sophistated markup)
+                var hidden = true;
                 
                 // ======================================================================
                 // Helper methods
@@ -284,14 +285,14 @@
                     setTimeout(function() {
                         if (!hovered) {
                             // hide by fading out
-                            container.animate( { opacity : 0 }, {
+                            container.stop(true, true).animate( { opacity : 0 }, {
                                 duration: 200,
                                 complete: function() {
                                     container.css("opacity", "");
                                     container.hide();
+                                    hidden = true;
                                 }
                             });
-                            
                         }
                     }, props.hideDelay);
                 };
@@ -308,11 +309,16 @@
                                 attached = true;
                             }
                             
-                            // position tooltip
-                            var positions = position();
+                            // stop any current animations
+                            container.stop(true, true);
                             
-                            // show
-                            animate(container, props.animateShow, positions.position);
+                            // show if hidden
+                            if (hidden) {
+                                // position tooltip
+                                var positions = position();
+                                // show
+                                animate(container, props.animateShow, positions.position);
+                            }
                         }
                         
                     }, props.showDelay);
@@ -334,6 +340,7 @@
                                 container.css(animValues.property, "");
                             }
                             container.css("opacity", "");
+                            hidden = false;
                         }
                     });
                 };

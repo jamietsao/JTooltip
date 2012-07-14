@@ -40,11 +40,15 @@
         <div class="target" id="1">Right Side</div>        
         <div class="target" id="2">Animate Right</div>        
         <div class="target" id="3" tooltip="This is from the 'tooltip' attribute">content from attribute</div>        
+        <div class="target" id="4">Containment - resize window so that tooltip shows below instead</div>        
+        <div class="target" id="5">Containment - Show right instead of left</div>        
         <script type="text/javascript">
             $(document).ready(function() {
                 JTooltip.create({ target : "#1", content : "This is awesome!", position : "right" });                
                 JTooltip.create({ target : "#2", content : "This is even more awesome!", animateShow : true, position : "right" });                
                 JTooltip.create({ target : "#3", contentAttr : "tooltip", position : "left" });                
+                JTooltip.create({ target : "#4", content : "Normally shows on top", position : "top" });                
+                JTooltip.create({ target : "#5", content : "Normally shows to left", position : "left" });                
             });
         </script>
     </body>
