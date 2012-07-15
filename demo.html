@@ -12,6 +12,7 @@
             body {
                 width: 600px;
                 margin: 0 auto;
+                text-align: center;
             }
             
             h1 {
@@ -26,7 +27,7 @@
             .target {
                 width: 100px;
                 padding: 5px 10px;
-                margin: 20px 0px;
+                margin: 20px auto;
                 border: 1px solid #aaa;
                 color: #598ede;
                 text-align: center;
@@ -40,15 +41,20 @@
         <div class="target" id="1">Right Side</div>        
         <div class="target" id="2">Animate Right</div>        
         <div class="target" id="3" tooltip="This is from the 'tooltip' attribute">content from attribute</div>        
-        <div class="target" id="4">Containment - resize window so that tooltip shows below instead</div>        
-        <div class="target" id="5">Containment - Show right instead of left</div>        
+        <div class="target" id="4">Containment - Should be top</div>        
+        <div class="target" id="5">Containment - Should be right</div>        
+        <div class="target" id="6">Containment - Should be bottom</div>        
+        <div class="target" id="7">Containment - Should be left</div>        
+        
         <script type="text/javascript">
             $(document).ready(function() {
                 JTooltip.create({ target : "#1", content : "This is awesome!", position : "right" });                
                 JTooltip.create({ target : "#2", content : "This is even more awesome!", animateShow : true, position : "right" });                
                 JTooltip.create({ target : "#3", contentAttr : "tooltip", position : "left" });                
-                JTooltip.create({ target : "#4", content : "Normally shows on top", position : "top" });                
-                JTooltip.create({ target : "#5", content : "Normally shows to left", position : "left" });                
+                JTooltip.create({ target : "#4", content : "Should be top", position : "top" });                
+                JTooltip.create({ target : "#5", content : "Should be right", position : "right" });                
+                JTooltip.create({ target : "#6", content : "Should be bottom", position : "bottom" });                
+                JTooltip.create({ target : "#7", content : "Should be left", position : "left" });                
             });
         </script>
     </body>

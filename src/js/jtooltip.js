@@ -92,16 +92,16 @@
             var createTooltip = function(target) {
     
                 // ======================================================================
-                // Closure state per tooltip
+                // Tooltip state
                 
                 var bubbleContent;              // tooltip content
                 var container;                  // tooltip container node
                 var bubble;                     // bubble node
                 var stem;                       // stem node
+                var basic = true;               // indicates if bubble has basic content (e.g. text only vs. more sophistated markup)
                 var attached = false;           // indicates if tooltip is attached to DOM
                 var hovered = false;            // indicates if tooltip is currently being hovered
-                var basic = true;               // indicates if bubble has basic content (e.g. text only vs. more sophistated markup)
-                var hidden = true;
+                var hidden = true;              // indicates if tooltip is currently hidden
                 
                 // ======================================================================
                 // Helper methods
@@ -239,16 +239,18 @@
                     if (containment) {
                         var viewportW = $(window).width();
                         var viewportH = $(window).height();
-                        if (position === "top" && (top - bubbleH - stemH) < 0) {
+                        var scrollTop = $(window).scrollTop();
+                        var scrollLeft = $(window).scrollLeft();
+                        if (position === "top" && (top - bubbleH - stemH - scrollTop) < 0) {
     //                        console.log("Exceeded: Trying " + inverseDir);
                             return calculatePositions(targetPos, targetW, targetH, false, true);
-                        } else if (position === "right" && (left + bubbleW + stemW) > viewportW) {
+                        } else if (position === "right" && (left + bubbleW + stemW - scrollLeft) > viewportW) {
     //                        console.log("Exceeded: Trying " + inverseDir);
                             return calculatePositions(targetPos, targetW, targetH, false, true);
-                        } else if (position == "bottom" && (top + bubbleH + stemH) > viewportH) {
+                        } else if (position == "bottom" && (top + bubbleH + stemH - scrollTop) > viewportH) {
     //                        console.log("Exceeded: Trying " + inverseDir);
                             return calculatePositions(targetPos, targetW, targetH, false, true);
-                        } else if (position === "left" && (left - bubbleW - stemW) < 0) {
+                        } else if (position === "left" && (left - bubbleW - stemW - scrollLeft) < 0) {
     //                        console.log("Exceeded: Trying " + inverseDir);
                             return calculatePositions(targetPos, targetW, targetH, false, true);
                         }
