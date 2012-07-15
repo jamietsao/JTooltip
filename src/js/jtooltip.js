@@ -92,15 +92,16 @@
             var createTooltip = function(target) {
     
                 // ======================================================================
-                // Closure state per tooltip
+                // Tooltip state
                 
                 var bubbleContent;              // tooltip content
                 var container;                  // tooltip container node
                 var bubble;                     // bubble node
                 var stem;                       // stem node
+                var basic = true;               // indicates if bubble has basic content (e.g. text only vs. more sophistated markup)
                 var attached = false;           // indicates if tooltip is attached to DOM
                 var hovered = false;            // indicates if tooltip is currently being hovered
-                var basic = true;               // indicates if bubble has basic content (e.g. text only vs. more sophistated markup)
+                var hidden = true;              // indicates if tooltip is currently hidden
                 
                 // ======================================================================
                 // Helper methods
@@ -238,16 +239,18 @@
                     if (containment) {
                         var viewportW = $(window).width();
                         var viewportH = $(window).height();
-                        if (position === "top" && (top - bubbleH - stemH) < 0) {
+                        var scrollTop = $(window).scrollTop();
+                        var scrollLeft = $(window).scrollLeft();
+                        if (position === "top" && (top - bubbleH - stemH - scrollTop) < 0) {
     //                        console.log("Exceeded: Trying " + inverseDir);
                             return calculatePositions(targetPos, targetW, targetH, false, true);
-                        } else if (position === "right" && (left + bubbleW + stemW) > viewportW) {
+                        } else if (position === "right" && (left + bubbleW + stemW - scrollLeft) > viewportW) {
     //                        console.log("Exceeded: Trying " + inverseDir);
                             return calculatePositions(targetPos, targetW, targetH, false, true);
-                        } else if (position == "bottom" && (top + bubbleH + stemH) > viewportH) {
+                        } else if (position == "bottom" && (top + bubbleH + stemH - scrollTop) > viewportH) {
     //                        console.log("Exceeded: Trying " + inverseDir);
                             return calculatePositions(targetPos, targetW, targetH, false, true);
-                        } else if (position === "left" && (left - bubbleW - stemW) < 0) {
+                        } else if (position === "left" && (left - bubbleW - stemW - scrollLeft) < 0) {
     //                        console.log("Exceeded: Trying " + inverseDir);
                             return calculatePositions(targetPos, targetW, targetH, false, true);
                         }
@@ -284,14 +287,14 @@
                     setTimeout(function() {
                         if (!hovered) {
                             // hide by fading out
-                            container.animate( { opacity : 0 }, {
+                            container.stop(true, true).animate( { opacity : 0 }, {
                                 duration: 200,
                                 complete: function() {
                                     container.css("opacity", "");
                                     container.hide();
+                                    hidden = true;
                                 }
                             });
-                            
                         }
                     }, props.hideDelay);
                 };
@@ -308,11 +311,16 @@
                                 attached = true;
                             }
                             
-                            // position tooltip
-                            var positions = position();
+                            // stop any current animations
+                            container.stop(true, true);
                             
-                            // show
-                            animate(container, props.animateShow, positions.position);
+                            // show if hidden
+                            if (hidden) {
+                                // position tooltip
+                                var positions = position();
+                                // show
+                                animate(container, props.animateShow, positions.position);
+                            }
                         }
                         
                     }, props.showDelay);
@@ -334,6 +342,7 @@
                                 container.css(animValues.property, "");
                             }
                             container.css("opacity", "");
+                            hidden = false;
                         }
                     });
                 };
