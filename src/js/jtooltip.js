@@ -1,7 +1,8 @@
-
-// check for namespace clash
-//if (!JTooltip) throw "'JTooltip' is already defined!";
-
+/**
+ * JTooltip by Jamie Tsao
+ * 
+ * http://jamietsao.github.com/JTooltip/
+ */
 (function(window, $) {
     
     var JT = {
@@ -99,7 +100,6 @@
                 var bubble;                     // bubble node
                 var stem;                       // stem node
                 var basic = true;               // indicates if bubble has basic content (e.g. text only vs. more sophistated markup)
-                var attached = false;           // indicates if tooltip is attached to DOM
                 var hovered = false;            // indicates if tooltip is currently being hovered
                 var hidden = true;              // indicates if tooltip is currently hidden
                 
@@ -107,8 +107,7 @@
                 // Helper methods
     
                 var initialize = function() {
-    
-                    // get content
+                    // initialize content
                     if (!props.content) {
                         // use title attribute
                         bubbleContent = target.attr(props.contentAttr);
@@ -123,22 +122,45 @@
                         bubbleContent = props.content;
                         basic = false;
                     }
+                    if (basic) {
+                        bubbleContent = $(JT.MARKUP_BASIC_CONTENT).append(bubbleContent);
+                    }
                     
+                    // bind handlers to target
+                    target.on("mouseenter", function(e) { 
+                        showTip(e); 
+                        console.log("Entered target"); 
+                    });
+                    target.on("mouseleave", function(e) { 
+                        removeTip(); 
+                        console.log("Left target"); 
+                    });
+
+                    // initialize tooltip
+                    initializeTooltip();
+                };
+
+                var initializeTooltip = function() {
                     // initialize container/bubble/stem
                     container = $(JT.MARKUP_TOOLTIP);
                     bubble = container.find(".bubble");
                     stem = container.find(".stem");
     
                     // add content to bubble
-                    if (basic) {
-                        bubbleContent = $(JT.MARKUP_BASIC_CONTENT).append(bubbleContent);
-                    }
                     bubble.append(bubbleContent);
                     
+                    // bind handlers to tooltip
+                    container.on("mouseenter", function(e) { 
+                        hovered = true; 
+//                        console.log("Entered tooltip"); 
+                    });
+                    container.on("mouseleave", function(e) { 
+                        removeTip(); 
+//                        console.log("Left tooltip"); 
+                    });
                 };
-    
+                
                 var position = function() {
-    
                     // get position and dimensions for target
                     var targetPos = target.offset();
                     var targetW = target.outerWidth(), targetH = target.outerHeight();
@@ -151,6 +173,7 @@
                     container.css("left", positions.left);
                     bubble.css("top", positions.bubbleTop);
                     bubble.css("left", positions.bubbleLeft);
+                    
                     if (props.stem) {
                         stem.css("top", positions.stemTop);
                         stem.css("left", positions.stemLeft)
@@ -230,7 +253,7 @@
                     // include offsets
                     top += offset.y;
                     left += offset.x;
-    
+                    
     //                console.log("top " + top + " | left " + left + 
     //                            " | bubbleTop " + bubbleTop + " | bubbleLeft " + bubbleLeft + 
     //                            " | stemTop " + stemTop + " | stemLeft " + stemLeft);
@@ -291,7 +314,7 @@
                                 duration: 200,
                                 complete: function() {
                                     container.css("opacity", "");
-                                    container.hide();
+                                    container.detach();
                                     hidden = true;
                                 }
                             });
@@ -305,17 +328,13 @@
                     // show after delay
                     setTimeout(function() { 
                         if (hovered) {
-                            // attach to DOM
-                            if (!attached) {
-                                $("body").append(container);
-                                attached = true;
-                            }
-                            
                             // stop any current animations
                             container.stop(true, true);
                             
                             // show if hidden
                             if (hidden) {
+                                // attach to DOM
+                                $("body").append(container);
                                 // position tooltip
                                 var positions = position();
                                 // show
@@ -365,14 +384,6 @@
                 // initialize
                 initialize();
                 
-                // bind handlers to target
-                target.on("mouseenter", function(e) { showTip(e); });
-                target.on("mouseleave", function(e) { removeTip(); });
-                
-                // bind handlers to tooltip
-                container.on("mouseenter", function(e) { hovered = true; });
-                container.on("mouseleave", function(e) { removeTip(); });
-    
                 // return object with client API
                 return {
                     destroy : function() {
