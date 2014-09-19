@@ -46,15 +46,19 @@
 
         <section id="main_content">
             <h3>Introduction</h3>
-            <p>JTooltip is a lightweight, easy to use jQuery library for creating tooltips:</p>
+            <p>JTooltip is a lightweight, easy to use jQuery library for creating tooltips.  The tooltip can appear above, below, to the right, or to the left of the target element.</p>
 
             <div class="example_row">
-                <span class="tooltip_target" id="1">Hover over me!</span>
-                <span class="tooltip_target" id="2">Don't forget me!</span>
+                <span class="tooltip_target" id="intro_1" data-tooltip="UP">UP</span>
+                <span class="tooltip_target" id="intro_2" data-tooltip="DOWN">DOWN</span>
+                <span class="tooltip_target" id="intro_3" data-tooltip="RIGHT">LEFT</span>
+                <span class="tooltip_target" id="intro_4" data-tooltip="RIGHT">LEFT</span>
+                <span class="tooltip_target" id="intro_5" data-tooltip="A">B</span>
+                <span class="tooltip_target" id="intro_6" data-tooltip="START">SELECT</span>
             </div>
 
             <h3>Simple to Use</h3>
-            <p>You create tooltip(s) for any 'target' by calling <span class="code">JTooltip.create</span> with a CSS selector, jQuery element, or DOM element.</p>
+            <p>You create tooltips for any 'target' by calling <span class="code">JTooltip.create</span> with a CSS selector, jQuery object, or DOM element.</p>
             <div class="highlight">
 <pre>
 <span class="nx">JTooltip</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span> <span class="nx">target</span> <span class="o">:</span> <span class="s2">"#username"</span><span class="p">,</span> <span class="nx">content</span><span class="o">:</span> <span class="s2">"Marshall Mathers"</span> <span class="p">});</span>
@@ -91,8 +95,6 @@
             <h3>Requirements</h3>
             
             
-            <h3>Support Browsers</h3>
-            
             <h3>About</h3>
             
         </section>
@@ -102,9 +104,13 @@
 
         <script tyoe="text/javascript">
             $(document).ready(function() {
-                // Examples from section 1
-                JTooltip.create({ target : "#1", content : "Hello", position: "top"});
-                JTooltip.create({ target : "#2", content : "World!", position: "top" });
+                // Examples from Introduction
+                JTooltip.create({ target : "#intro_1", contentAttr : "data-tooltip", position: "top"});
+                JTooltip.create({ target : "#intro_2", contentAttr : "data-tooltip", position: "bottom" });
+                JTooltip.create({ target : "#intro_3", contentAttr : "data-tooltip", position: "right" });
+                JTooltip.create({ target : "#intro_4", contentAttr : "data-tooltip", position: "right" });
+                JTooltip.create({ target : "#intro_5", contentAttr : "data-tooltip", position: "left" });
+                JTooltip.create({ target : "#intro_6", contentAttr : "data-tooltip", position: "left" });
                 // examples for 'Simple to Use'
                 JTooltip.create({ target : "#3", content : "Marshall Mathers" });
                 JTooltip.create({ target : "#4" });
