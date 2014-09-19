@@ -4,26 +4,13 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
-    <link rel="stylesheet" type="text/css" href="src/css/jtooltip.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="src/js/jtooltip.js"></script>
-    <title>JTooltip by Jamie Tsao</title>
-    <script type="text/javascript">
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-33441717-1']);
-      _gaq.push(['_trackPageview']);
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    </script>    
+    <title>JTooltip by jamietsao</title>
   </head>
 
   <body>
@@ -32,91 +19,56 @@
 
         <header>
           <h1>JTooltip</h1>
-          <h2>Not just another Tooltip library</h2>
-          <h5>by <a href="https://github.com/jamietsao">Jamie Tsao</a></h5>
+          <h2>jQuery Tooltip library</h2>
         </header>
 
         <section id="downloads" class="clearfix">
-<!--           <a href="https://github.com/jamietsao/JTooltip/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a> -->
-<!--           <a href="https://github.com/jamietsao/JTooltip/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a> -->
-<!--           <a href="https://github.com/jamietsao/JTooltip" id="view-on-github" class="button"><span>View on GitHub</span></a> -->
+          <a href="https://github.com/jamietsao/JTooltip/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/jamietsao/JTooltip/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/jamietsao/JTooltip" id="view-on-github" class="button"><span>View on GitHub</span></a>
         </section>
 
         <hr>
 
         <section id="main_content">
-            <h3>Introduction</h3>
-            <p>JTooltip is a lightweight, easy to use jQuery library for creating tooltips.  The tooltip can appear above, below, to the right, or to the left of the target element.</p>
+          <h3>
+<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
 
-            <div class="example_row">
-                <span class="tooltip_target" id="intro_1" data-tooltip="UP">UP</span>
-                <span class="tooltip_target" id="intro_2" data-tooltip="DOWN">DOWN</span>
-                <span class="tooltip_target" id="intro_3" data-tooltip="RIGHT">LEFT</span>
-                <span class="tooltip_target" id="intro_4" data-tooltip="RIGHT">LEFT</span>
-                <span class="tooltip_target" id="intro_5" data-tooltip="A">B</span>
-                <span class="tooltip_target" id="intro_6" data-tooltip="START">SELECT</span>
-            </div>
+<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
 
-            <h3>Simple to Use</h3>
-            <p>You create tooltips for any 'target' by calling <span class="code">JTooltip.create</span> with a CSS selector, jQuery object, or DOM element.</p>
-            <div class="highlight">
-<pre>
-<span class="nx">JTooltip</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span> <span class="nx">target</span> <span class="o">:</span> <span class="s2">"#username"</span><span class="p">,</span> <span class="nx">content</span><span class="o">:</span> <span class="s2">"Marshall Mathers"</span> <span class="p">});</span>
-</pre>            
-            </div>            
-            <div class="example_row">
-                <span class="username" id="3">slimshady</span>
-            </div>
-            
-            <p>Text from the <span class="code">title</span> attribute can be used as content by not including the <span class="code">content</span> option (use the <span class="code">contentAttr</span> option to specify an attribute other than <span class="code">title</span>).</p>
-            <div class="highlight">
-<pre><span class="o">&lt;</span><span class="nx">span</span> <span class="kr">class</span><span class="o">=</span><span class="s2">"jtooltip-me"</span> <span class="nx">title</span><span class="o">=</span><span class="s2">"Text from the 'title' attribute"</span><span class="o">&gt;</span><span class="nx">Foo</span><span class="o">&lt;</span><span class="nx">/span&gt;</span>
-<span class="o">&lt;</span><span class="nx">span</span> <span class="kr">class</span><span class="o">=</span><span class="s2">"jtooltip-me"</span> <span class="nx">title</span><span class="o">=</span><span class="s2">"Allows for content re-use"</span><span class="o">&gt;</span><span class="nx">Bar</span><span class="o">&lt;</span><span class="nx">/span&gt;</span>
+<pre><code>$ cd your_repo_root/repo_name
+$ git fetch origin
+$ git checkout gh-pages
+</code></pre>
 
-<span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"text/javascript"</span><span class="o">&gt;</span>
-    <span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="c1">// multiple tooltips can be created by using CSS selectors</span>
-        <span class="nx">JTooltip</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span> <span class="nx">target</span> <span class="o">:</span> <span class="s2">".jtooltip-me"</span> <span class="p">});</span>
-    <span class="p">});</span>
-<span class="o">&lt;</span><span class="nx">/script&gt;</span>
-</pre>
-            </div>            
-            <div class="example_row">
-                <span class="tooltip_target" id="4" title="Text from the 'title' attribute">Foo</span>
-                <span class="tooltip_target" id="5" title="Allows for content re-use">Bar</span>
-            </div>
-            
-            <h3>More Examples</h3>
-            
-            
-            <h3>Options</h3>
-            
-            
-            <h3>Requirements</h3>
-            
-            
-            <h3>About</h3>
-            
+<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+
+<h3>
+<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+
+<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+
+<h3>
+<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+
+<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+
+<h3>
+<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+
+<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+
+<h3>
+<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+
+<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
         </section>
 
         <footer>
+          JTooltip is maintained by <a href="https://github.com/jamietsao">jamietsao</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
         </footer>
 
-        <script tyoe="text/javascript">
-            $(document).ready(function() {
-                // Examples from Introduction
-                JTooltip.create({ target : "#intro_1", contentAttr : "data-tooltip", position: "top"});
-                JTooltip.create({ target : "#intro_2", contentAttr : "data-tooltip", position: "bottom" });
-                JTooltip.create({ target : "#intro_3", contentAttr : "data-tooltip", position: "right" });
-                JTooltip.create({ target : "#intro_4", contentAttr : "data-tooltip", position: "right" });
-                JTooltip.create({ target : "#intro_5", contentAttr : "data-tooltip", position: "left" });
-                JTooltip.create({ target : "#intro_6", contentAttr : "data-tooltip", position: "left" });
-                // examples for 'Simple to Use'
-                JTooltip.create({ target : "#3", content : "Marshall Mathers" });
-                JTooltip.create({ target : "#4" });
-                JTooltip.create({ target : "#5" });
-            });
-        </script>
         
       </div>
     </div>
