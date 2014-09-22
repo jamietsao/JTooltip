@@ -1,4 +1,0 @@
-JTooltip
-========
-
-jQuery Tooltip library
