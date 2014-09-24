@@ -95,6 +95,10 @@
                     props.animateProps = [ defaultAnimateProps(props.position) ];
                 }
 
+                if (props.animateShow && !$.isArray(props.animateProps)) {
+                    throw "'animateProps' must be an array of animation properties.";
+                }
+
             };
 
             var defaultAnimateProps = function(position) {
