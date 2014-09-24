@@ -17,6 +17,7 @@
         // Constants
         
         DEFAULT_OFFSET : 5,
+        DEFAULT_ANIM_DISTANCE : 10,
             
         // direction inversion map
         INVERT_DIRECTION : {
@@ -91,23 +92,22 @@
                 
                 // initialize animation properties
                 if (props.animateShow && !props.animateProps) {
-                    props.animateProps = [ getAnimValues(props.position) ];
+                    props.animateProps = [ defaultAnimateProps(props.position) ];
                 }
 
             };
 
-            var getAnimValues = function(position) {
+            var defaultAnimateProps = function(position) {
                 if (position === "top") {
-                    return { property : "margin-top", start : 10, end : 0 };
+                    return { property : "margin-top", start : DEFAULT_ANIM_DISTANCE, end : 0 };
                 } else if (position === "right") {
-                    return { property : "margin-left", start : -10, end : 0 };
+                    return { property : "margin-left", start : -DEFAULT_ANIM_DISTANCE, end : 0 };
                 } else if (position === "bottom") {
-                    return { property : "margin-top", start : -10, end : 0 };
+                    return { property : "margin-top", start : -DEFAULT_ANIM_DISTANCE, end : 0 };
                 } else if (position == "left") {
-                    return { property : "margin-left", start : 10, end : 0 };
+                    return { property : "margin-left", start : DEFAULT_ANIM_DISTANCE, end : 0 };
                 }
             };
-            
     
             var createTooltip = function(target) {
     
@@ -148,11 +148,11 @@
                     // bind handlers to target
                     target.on("mouseenter", function(e) { 
                         showTip(e); 
-                        console.log("Entered target"); 
+//                        console.log("Entered target"); 
                     });
                     target.on("mouseleave", function(e) { 
                         removeTip(); 
-                        console.log("Left target"); 
+//                        console.log("Left target"); 
                     });
 
                     // initialize tooltip
@@ -368,21 +368,22 @@
 
                     // always animate opacity (TODO: change this?)
                     container.css("opacity", 0);
-                    var animProps = { "opacity" : 1 }
+                    var jqAnimProps = { "opacity" : 1 };
 
                     if (animate) {
-                        for (var i = 0; i < props.animateProps.length; i++) {
-                            container.css(props.animateProps[i].property, props.animateProps[i].start);
-                            animProps[props.animateProps[i].property] = props.animateProps[i].end;
+                        var animProps = props.animateProps;
+                        for (var i = 0; i < animProps.length; i++) {
+                            container.css(animProps[i].property, animProps[i].start);
+                            jqAnimProps[animProps[i].property] = animProps[i].end;
                         }
                     }
                     container.show();
-                    container.animate(animProps, {
+                    container.animate(jqAnimProps, {
                         duration: props.animateDur,
                         complete: function() {
                             if (animate) {
-                                for (var prop in animProps) {
-                                    if (animProps.hasOwnProperty(prop)) {
+                                for (var prop in jqAnimProps) {
+                                    if (jqAnimProps.hasOwnProperty(prop)) {
                                         container.css(prop, "");
                                     }
                                 }
