@@ -56,6 +56,7 @@
                     hideDelay   : 75,
                     animateShow : false,
                     animateDur  : 200,
+                    animateProps   : undefined,
                     stem        : true,
                     containment : "viewport",
                     maxWidth    : 300
@@ -88,7 +89,25 @@
                     matched = $(props.target);
                 }
                 
+                // initialize animation properties
+                if (props.animateShow && !props.animateProps) {
+                    props.animateProps = [ getAnimValues(props.position) ];
+                }
+
             };
+
+            var getAnimValues = function(position) {
+                if (position === "top") {
+                    return { property : "margin-top", start : 10, end : 0 };
+                } else if (position === "right") {
+                    return { property : "margin-left", start : -10, end : 0 };
+                } else if (position === "bottom") {
+                    return { property : "margin-top", start : -10, end : 0 };
+                } else if (position == "left") {
+                    return { property : "margin-left", start : 10, end : 0 };
+                }
+            };
+            
     
             var createTooltip = function(target) {
     
@@ -346,36 +365,31 @@
                 };
                 
                 var animate = function(container, animate, position) {
+
+                    // always animate opacity (TODO: change this?)
                     container.css("opacity", 0);
-                    var animProps = { opacity : 1 };
+                    var animProps = { "opacity" : 1 }
+
                     if (animate) {
-                        var animValues = getAnimValues(position);
-                        container.css(animValues.property, animValues.start);
-                        animProps[animValues.property] = animValues.end;
+                        for (var i = 0; i < props.animateProps.length; i++) {
+                            container.css(props.animateProps[i].property, props.animateProps[i].start);
+                            animProps[props.animateProps[i].property] = props.animateProps[i].end;
+                        }
                     }
                     container.show();
                     container.animate(animProps, {
                         duration: props.animateDur,
                         complete: function() {
                             if (animate) {
-                                container.css(animValues.property, "");
+                                for (var prop in animProps) {
+                                    if (animProps.hasOwnProperty(prop)) {
+                                        container.css(prop, "");
+                                    }
+                                }
                             }
-                            container.css("opacity", "");
                             hidden = false;
                         }
                     });
-                };
-                
-                var getAnimValues = function(position) {
-                    if (position === "top") {
-                        return { property : "margin-top", start : 10, end : 0 };
-                    } else if (position === "right") {
-                        return { property : "margin-left", start : -10, end : 0 };
-                    } else if (position === "bottom") {
-                        return { property : "margin-top", start : -10, end : 0 };
-                    } else if (position == "left") {
-                        return { property : "margin-left", start : 10, end : 0 };
-                    }
                 };
                 
                 // ======================================================================
