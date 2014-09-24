@@ -99,13 +99,13 @@
 
             var defaultAnimateProps = function(position) {
                 if (position === "top") {
-                    return { property : "margin-top", start : DEFAULT_ANIM_DISTANCE, end : 0 };
+                    return { property : "margin-top", start : JT.DEFAULT_ANIM_DISTANCE, end : 0 };
                 } else if (position === "right") {
-                    return { property : "margin-left", start : -DEFAULT_ANIM_DISTANCE, end : 0 };
+                    return { property : "margin-left", start : -JT.DEFAULT_ANIM_DISTANCE, end : 0 };
                 } else if (position === "bottom") {
-                    return { property : "margin-top", start : -DEFAULT_ANIM_DISTANCE, end : 0 };
+                    return { property : "margin-top", start : -JT.DEFAULT_ANIM_DISTANCE, end : 0 };
                 } else if (position == "left") {
-                    return { property : "margin-left", start : DEFAULT_ANIM_DISTANCE, end : 0 };
+                    return { property : "margin-left", start : JT.DEFAULT_ANIM_DISTANCE, end : 0 };
                 }
             };
     
