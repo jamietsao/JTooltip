@@ -17,6 +17,7 @@
         // Constants
         
         DEFAULT_OFFSET : 5,
+        DEFAULT_ANIM_DISTANCE : 10,
             
         // direction inversion map
         INVERT_DIRECTION : {
@@ -56,6 +57,7 @@
                     hideDelay   : 75,
                     animateShow : false,
                     animateDur  : 200,
+                    animateProps   : undefined,
                     stem        : true,
                     containment : "viewport",
                     maxWidth    : 300
@@ -88,6 +90,27 @@
                     matched = $(props.target);
                 }
                 
+                // initialize animation properties
+                if (props.animateShow && !props.animateProps) {
+                    props.animateProps = [ defaultAnimateProps(props.position) ];
+                }
+
+                if (props.animateShow && !$.isArray(props.animateProps)) {
+                    throw "'animateProps' must be an array of animation properties.";
+                }
+
+            };
+
+            var defaultAnimateProps = function(position) {
+                if (position === "top") {
+                    return { property : "margin-top", start : JT.DEFAULT_ANIM_DISTANCE, end : 0 };
+                } else if (position === "right") {
+                    return { property : "margin-left", start : -JT.DEFAULT_ANIM_DISTANCE, end : 0 };
+                } else if (position === "bottom") {
+                    return { property : "margin-top", start : -JT.DEFAULT_ANIM_DISTANCE, end : 0 };
+                } else if (position == "left") {
+                    return { property : "margin-left", start : JT.DEFAULT_ANIM_DISTANCE, end : 0 };
+                }
             };
     
             var createTooltip = function(target) {
@@ -129,11 +152,11 @@
                     // bind handlers to target
                     target.on("mouseenter", function(e) { 
                         showTip(e); 
-                        console.log("Entered target"); 
+//                        console.log("Entered target"); 
                     });
                     target.on("mouseleave", function(e) { 
                         removeTip(); 
-                        console.log("Left target"); 
+//                        console.log("Left target"); 
                     });
 
                     // initialize tooltip
@@ -346,36 +369,32 @@
                 };
                 
                 var animate = function(container, animate, position) {
+
+                    // always animate opacity (TODO: change this?)
                     container.css("opacity", 0);
-                    var animProps = { opacity : 1 };
+                    var jqAnimProps = { "opacity" : 1 };
+
                     if (animate) {
-                        var animValues = getAnimValues(position);
-                        container.css(animValues.property, animValues.start);
-                        animProps[animValues.property] = animValues.end;
+                        var animProps = props.animateProps;
+                        for (var i = 0; i < animProps.length; i++) {
+                            container.css(animProps[i].property, animProps[i].start);
+                            jqAnimProps[animProps[i].property] = animProps[i].end;
+                        }
                     }
                     container.show();
-                    container.animate(animProps, {
+                    container.animate(jqAnimProps, {
                         duration: props.animateDur,
                         complete: function() {
                             if (animate) {
-                                container.css(animValues.property, "");
+                                for (var prop in jqAnimProps) {
+                                    if (jqAnimProps.hasOwnProperty(prop)) {
+                                        container.css(prop, "");
+                                    }
+                                }
                             }
-                            container.css("opacity", "");
                             hidden = false;
                         }
                     });
-                };
-                
-                var getAnimValues = function(position) {
-                    if (position === "top") {
-                        return { property : "margin-top", start : 10, end : 0 };
-                    } else if (position === "right") {
-                        return { property : "margin-left", start : -10, end : 0 };
-                    } else if (position === "bottom") {
-                        return { property : "margin-top", start : -10, end : 0 };
-                    } else if (position == "left") {
-                        return { property : "margin-left", start : 10, end : 0 };
-                    }
                 };
                 
                 // ======================================================================

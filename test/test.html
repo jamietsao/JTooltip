@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+    <head>
+        <title>JTooltip Demo</title>
+        <meta charset='utf-8'>
+        <meta http-equiv="X-UA-Compatible" content="chrome=1">
+        <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="../src/css/jtooltip.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script src="../src/js/jtooltip.js"></script>
+        <style type="text/css">
+            body {
+                width: 600px;
+                margin: 0 auto;
+                text-align: center;
+            }
+            
+            h1 {
+                font-family: 'Helvetica Neue', Helvetica, Arial, serif; 
+                font-weight: 900;
+                letter-spacing: -1px;
+                font-size: 48px;
+                color: #303030;
+                line-height: 1.2;            
+            }
+            
+            .target {
+                width: 100px;
+                padding: 5px 10px;
+                margin: 20px auto;
+                border: 1px solid #aaa;
+                color: #598ede;
+                text-align: center;
+                cursor: pointer;
+            }
+        
+        </style>
+    </head>
+    <body>
+        <h1>JTooltip Test Page</h1>
+        <div class="target" id="default-1">Default Tooltip</div>
+        <div class="target" id="position-1">Top</div>
+        <div class="target" id="position-2">Right</div>
+        <div class="target" id="position-3">Bottom</div>
+        <div class="target" id="position-4">Left</div>
+        <div class="target" id="offset-1">Custom Offset</div>
+        <div class="target" id="offset-2">Negative Offset</div>
+        <div class="target" id="stem-1">No Stem</div>
+        <div class="target" id="content-1" title="This is from the 'title' attribute">Content from 'title'</div>
+        <div class="target" id="content-2" data-tooltip="This is from the 'data-tooltip' attribute">Content from 'data-tooltip'</div>
+        <div class="target" id="delay-1">Show & Hide Delays</div>
+        <div class="target" id="anim-1">Default Animation</div>
+        <div class="target" id="anim-2">Longer Animation</div>
+        <div class="target" id="anim-3">Custom Animation</div>
+        <div class="target" id="containment-1">Containment - Should be top</div>        
+        <div class="target" id="containment-2">Containment - Should be right</div>        
+        <div class="target" id="containment-3">Containment - Should be bottom</div>        
+        <div class="target" id="containment-4">Containment - Should be left</div> 
+        <div class="target" id="maxwidth-1">Max Width</div> 
+        
+        <script type="text/javascript">
+            $(document).ready(function() {
+                JTooltip.create({ target : "#default-1", content : "Content" });                
+                JTooltip.create({ target : "#position-1", content : "Content", position : "top" });
+                JTooltip.create({ target : "#position-2", content : "Content", position : "right" });
+                JTooltip.create({ target : "#position-3", content : "Content", position : "bottom" });
+                JTooltip.create({ target : "#position-4", content : "Content", position : "left" });
+                JTooltip.create({ target : "#offset-1", content : "Content", position: "right", offset : { x : 150, y : 0 } });
+                JTooltip.create({ target : "#offset-2", content : "Content", position: "right", offset : { x : -30, y : 0 } });
+                JTooltip.create({ target : "#stem-1", content : "Content", stem : false });
+                JTooltip.create({ target : "#content-1" });
+                JTooltip.create({ target : "#content-2", contentAttr : "data-tooltip" });                
+                JTooltip.create({ target : "#delay-1", content: "1 second to show and hide", showDelay : 1000, hideDelay : 1000 });                
+                JTooltip.create({ target : "#anim-1", content : "200ms animation", animateShow : true });
+                JTooltip.create({ target : "#anim-2", content : "1000ms animation", animateShow : true, animateDur : 1000 });
+                JTooltip.create({ target : "#anim-3", content : "Weeeeeeeee!!!", animateShow : true, position : "right", offset : { x : 300, y : 0 }, animateProps : [{ property : "margin-left", start : -300, end : 0 }] });                
+                JTooltip.create({ target : "#containment-1", content : "Should be top", position : "top" });
+                JTooltip.create({ target : "#containment-2", content : "Should be right", position : "right" });
+                JTooltip.create({ target : "#containment-3", content : "Should be bottom", position : "bottom" });
+                JTooltip.create({ target : "#containment-4", content : "Should be left", position : "left" });
+                JTooltip.create({ target : "#maxwidth-1", content : "maxWidth of 75px", position : "right", maxWidth : 75 });
+            });
+        </script>
+    </body>
+
+</html>
