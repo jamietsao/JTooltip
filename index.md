@@ -53,8 +53,8 @@ $(document).ready(function() {
 ```
 
 <div class="example_row">
-    <span class="tooltip_target my-tooltip" id="4" title="Text from the 'title' attribute">Foo</span>
-    <span class="tooltip_target my-tooltip" id="5" title="Allows for content re-use">Bar</span>
+    <span class="tooltip_target my-tooltip" title="Text from the 'title' attribute">Foo</span>
+    <span class="tooltip_target my-tooltip" title="Allows for content re-use">Bar</span>
 </div>
 
 ### Configuration Options
@@ -105,6 +105,6 @@ Find a bug?  Would like to request an enhancement?  Please log it <a href="https
         JTooltip.create({ target : jqObj, content: "Bells" });
         JTooltip.create({ target : ele, content: "All The Way!" });
 
-        JTooltip.create({ target : ".my-tooltip" });       
+        JTooltip.create({ target : ".my-tooltip" });
     });
 </script>
