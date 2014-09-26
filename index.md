@@ -56,7 +56,7 @@ $(document).ready(function() {
     <span class="tooltip_target" id="bar" data-jtooltip="From the 'data-jtooltip' attribute">Bar</span>
 </div>
 
-Other configuration options include the ability to hide the stem, customize the offset position, and animate the display of the toolip:
+Other configuration options include the ability to hide the stem, customize the offset position, and animate the display of the tooltip:
 
 ```javascript
 $(document).ready(function() {
@@ -70,7 +70,7 @@ $(document).ready(function() {
                       offset : { x : 0, y : -5 },
                       animateShow : true
                     });
-                    
+
     JTooltip.create({ 
                       target : ".e_bottom",
                       contentAttr : "data-jtooltip",
