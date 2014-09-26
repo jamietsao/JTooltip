@@ -41,21 +41,50 @@ JTooltip.create({ target : ele, content: "All The Way!" });
 Text from the `title` attribute can be used as content by not including the `content` option (use the `contentAttr` option to specify an attribute other than `title`).
 
 ```html
-<span class="my-tooltip" title="Text from the 'title' attribute">Foo</span>
-<span class="my-tooltip" title="Allows for content re-use">Bar</span>
+<span id="foo" title="From the 'title' attribute">Foo</span>
+<span id="bar" data-tooltip="From the 'data-tooltip' attribute">Bar</span>
 ```
 ```javascript
 $(document).ready(function() {
-    // multiple tooltips can be created with a single 
-    // invocation by using a class selector
-    JTooltip.create({ target : ".my-tooltip" });
+    JTooltip.create({ target : "#foo" });
+    JTooltip.create({ target : "#bar", contentAttr : "data-tooltip" });
 });
 ```
 
 <div class="example_row">
-    <span class="tooltip_target my-tooltip" title="Text from the 'title' attribute">Foo</span>
-    <span class="tooltip_target my-tooltip" title="Allows for content re-use">Bar</span>
+    <span class="tooltip_target" id="foo" title="From the 'title' attribute">Foo</span>
+    <span class="tooltip_target" id="bar" data-tooltip="From the 'data-tooltip' attribute">Bar</span>
 </div>
+
+Other configuration options include the ability to hide the stem, customize the offset position, and animate the display of the toolip:
+
+```javascript
+$(document).ready(function() {
+    // multiple tooltips can be created with a single 
+    // invocation by using a class selector
+    JTooltip.create({ 
+                      target : ".emoticon",        
+                      contentAttr : "data-tooltip", 
+                      position: "right", 
+                      stem : false, 
+                      offset : { x : 5, y : 0 }, 
+                      animateShow : true 
+                    });
+});
+```
+
+<div class="example_row">
+    <span class="tooltip_target span_3 emoticon" data-tooltip=":smile:">:smile:</span>
+    <span class="tooltip_target span_3 emoticon" data-tooltip=":smirk:">:smirk:</span>
+    <span class="tooltip_target span_3 emoticon" data-tooltip=":angry:">:angry:</span>
+</div>
+<div class="example_row">
+    <span class="tooltip_target span_3 emoticon" data-tooltip=":grin:">:grin:</span>
+    <span class="tooltip_target span_3 emoticon" data-tooltip=":sleeping:">:sleeping:</span>
+    <span class="tooltip_target span_3 emoticon" data-tooltip=":cry:">:cry:</span>
+</div>
+
+
 
 ### Configuration Options
 JTooltip can be customized by overriding default configuration options.  `JTooltip.create` expects an `options` object.  `target` is the only required option.
@@ -105,6 +134,10 @@ Find a bug?  Would like to request an enhancement?  Please log it <a href="https
         JTooltip.create({ target : jqObj, content: "Bells" });
         JTooltip.create({ target : ele, content: "All The Way!" });
 
-        JTooltip.create({ target : ".my-tooltip" });
+        JTooltip.create({ target : "#foo" });
+        JTooltip.create({ target : "#bar", contentAttr : "data-tooltip" });
+
+        JTooltip.create({ target : ".emoticon", contentAttr : "data-tooltip", position: "right", stem : false, offset : { x : 5, y : 0 }, animateShow : true });
+
     });
 </script>

@@ -401,6 +401,10 @@ span.tooltip_target {
     font-weight: bold;
 }
 
+span.span_3 {
+    margin-right: 100px;
+}
+
 span.username {
     height: 40px;
     display: inline-block;
