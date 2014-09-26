@@ -401,8 +401,11 @@ span.tooltip_target {
     font-weight: bold;
 }
 
-span.span_3 {
-    margin-right: 100px;
+span.emoticon {
+    display: inline-block;
+    line-height: 20px;
+    vertical-align: middle;
+    margin: 0px 10px;
 }
 
 span.username {
