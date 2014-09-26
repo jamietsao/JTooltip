@@ -74,14 +74,14 @@ $(document).ready(function() {
 ```
 
 <div class="example_row">
-    <span class="tooltip_target span_3 emoticon" data-tooltip=":smile:">:smile:</span>
-    <span class="tooltip_target span_3 emoticon" data-tooltip=":smirk:">:smirk:</span>
-    <span class="tooltip_target span_3 emoticon" data-tooltip=":angry:">:angry:</span>
+    <span class="tooltip_target span_3 emoticon" data-tooltip="&#58;smile &#58;">:smile:</span>
+    <span class="tooltip_target span_3 emoticon" data-tooltip="&#58;smirk&#58;">:smirk:</span>
+    <span class="tooltip_target span_3 emoticon" data-tooltip="&#58;angry &#58;">:angry:</span>
 </div>
 <div class="example_row">
-    <span class="tooltip_target span_3 emoticon" data-tooltip=":grin:">:grin:</span>
-    <span class="tooltip_target span_3 emoticon" data-tooltip=":sleeping:">:sleeping:</span>
-    <span class="tooltip_target span_3 emoticon" data-tooltip=":cry:">:cry:</span>
+    <span class="tooltip_target span_3 emoticon" data-tooltip="&#58;grin&#58;">:grin:</span>
+    <span class="tooltip_target span_3 emoticon" data-tooltip="&#58;sleeping&#58;">:sleeping:</span>
+    <span class="tooltip_target span_3 emoticon" data-tooltip="&#58;cry&#58;">:cry:</span>
 </div>
 
 
